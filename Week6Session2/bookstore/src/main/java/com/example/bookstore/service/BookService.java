@@ -5,6 +5,7 @@ import com.example.bookstore.entity.Author;
 import com.example.bookstore.entity.Book;
 import com.example.bookstore.repository.AuthorRepository;
 import com.example.bookstore.repository.BookRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,9 @@ public class BookService {
     // get books by author
 
     // create a book
+    @Transactional(
+            isolation = READABLE
+    )
     public Book createBook(Book book, Integer authorId){
         Author author = authorRepository.findById(authorId).orElse(null);
         book.setAuthor(author);

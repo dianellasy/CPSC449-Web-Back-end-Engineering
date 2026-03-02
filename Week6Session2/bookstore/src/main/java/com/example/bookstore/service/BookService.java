@@ -34,9 +34,7 @@ public class BookService {
     // get books by author
 
     // create a book
-    @Transactional(
-            isolation = READABLE
-    )
+    @Transactional
     public Book createBook(Book book, Integer authorId){
         Author author = authorRepository.findById(authorId).orElse(null);
         book.setAuthor(author);
